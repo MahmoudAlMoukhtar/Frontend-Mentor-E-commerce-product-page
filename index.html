@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Frontend Mentor | E-commerce product page</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+  <!--  -->
+  <div class="container px-12 mx-auto mt-6 mb-16">
+    <!--  -->
+    <header class="flex
+    justify-between
+    content-center
+    items-center
+    mb-4
+    ">
+      <!--  -->
+      <nav class="
+      flex
+      justify-between
+      gap-x-16 
+      content-center 
+      items-center	
+      ">
+        <!--  -->
+        <a href="#">
+          <h1 class="font-bold text-4xl">Sneaker</h1>
+        </a>
+        <ul class="flex gap-x-8">
+          <li><a href="">Men</a></li>
+          <li><a href="">Women</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Contact</a></li>
+        </ul>
+        <!--  -->
+      </nav>
+      <!--  -->
+      <div class="
+      flex
+      justify-center	
+      content-center 
+      items-center 
+      gap-x-6
+      ">
+        <img src="./images/icon-cart.svg" alt="" class="w-8 h-8 cursor-pointer">
+        <img src="./images/image-avatar.png" alt="" class="w-12 h-12 cursor-pointer">
+      </div>
+      <!--  -->
+    </header>
+    <!--  -->
+    <hr>
+    <!--  -->
+    <main class="
+    flex
+    justify-around
+    items-center
+    gap-x-40
+    mt-20
+    ">
+      <!--  -->
+      <div id="view-prodact" class="
+      flex
+      flex-col
+      items-center
+      ">
+        <img src="./images/image-product-1.jpg" alt="" class="w-96 h-96 rounded-lg">
+        <!--  -->
+        <ul id="nav-imgs" class="flex gap-x-6 pt-10">
+          <li><img src="./images/image-product-1-thumbnail.jpg" alt=""
+              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300"></li>
+          <li><img src="./images/image-product-2-thumbnail.jpg" alt=""
+              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300"></li>
+          <li><img src="./images/image-product-3-thumbnail.jpg" alt=""
+              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300"></li>
+          <li><img src="./images/image-product-4-thumbnail.jpg" alt=""
+              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300"></li>
+        </ul>
+        <!--  -->
+      </div>
+      <!--  -->
+      <div id="detailes-prodact" class="flex flex-col gap-y-10">
+        <!--  -->
+        <h3 class="
+        font-bold 
+        text-md 
+        text-orange-400 
+        tracking-widest
+        ">
+          Sneaker Company
+        </h3>
+        <h1 class="font-bold text-4xl">
+          Fall Limited Edition</br>
+          Sneakers
+        </h1>
+        <p>These low-profile sneakers are your perfect casual wear</br>
+          companion. Featuring a durable rubber outer sole, they’ll</br>
+          withstand everything the weather can offer.
+        </p>
+        <!--  -->
+        <div id="details-Price">
+          <!--  -->
+          <div class="flex gap-x-2">
+            <span id="price" class="text-2xl">$125</span>
+            <div id="devtiion" class="
+            text-md 
+            font-bold 
+            text-orange-400 
+            bg-orange-100 
+            px-1 
+            rounded-md
+            ">
+              50%
+            </div>
+          </div>
+          <div id="descount" class="">
+            <p class="text-sm">$250.00</p>
+          </div>
+          <!--  -->
+          <div id="btns" class="
+          flex 
+          justify-between
+          content-center
+          items-center
+          ">
+            <!--  -->
+            <div class="counter mt-4">
+              <div class="bg-gray-100 rounded-xl flex justify-center items-center gap-x-0 mb-6">
+                <button onclick="decrement()" id="btnMinus"
+                  class="text-orange-400 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg">
+                  <p class="text-2xl font-bold text-orange-400">-</p>
+                </button>
+                <p class="text-sm leading-5 font-medium text-gray-900">
+                  <span id="count" class="px-6">1</span>
+                </p>
+                <button onclick="addCount()" id="btnPlus"
+                  class="hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg">
+                  <p class="text-2xl text-orange-400">+</p>
+                </button>
+              </div>
+            </div>
+            <!--  -->
+            <button id="add-to-cart" class="
+                flex
+                items-center
+                gap-x-2
+                w-60
+                bg-orange-400
+                text-white
+                font-bold
+                px-16
+                py-4
+                rounded-xl
+                shadow-lg
+                shadow-orange-200
+                ">
+              <img src="./images/icon-cart.svg" alt="" class="w-4 h-4">Add to cart
+            </button>
+            <!--  -->
+          </div>
+          <!--  -->
+        </div>
+        <!--  -->
+      </div>
+      <!--  -->
+    </main>
+    <!--  -->
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Mahmoud Al-Moukhtar</a>.
+  </div>
+</body>
+<!--  -->
+<script src="./prodacts.js"></script>
+<script src="./main.js"></script>
+<!--  -->
+
+</html>
