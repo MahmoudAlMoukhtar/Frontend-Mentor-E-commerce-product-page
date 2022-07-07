@@ -5,13 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Frontend Mentor | E-commerce product page</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+    html,
+    body,
+    #cart-prodact {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     .attribution {
       font-size: 11px;
       text-align: center;
@@ -20,14 +30,52 @@
     .attribution a {
       color: hsl(228, 45%, 44%);
     }
+
+
+
+    @media (max-width: 640px) {
+      main{
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+      }
+      .container{
+        width: 100% !important;
+        padding: 0 10px !important;
+        text-align: center !important;
+      }
+      #detailes-prodact{
+        width: 100% !important;
+        padding: 0 !important;
+        margin-top: 20px;
+      }
+      #old-price{
+        text-align: start;
+      }
+      #add-to-cart{
+        display: block;
+        text-align: center;
+        width: 200px;
+        padding: 10px 0 !important;
+      }
+      #horizUl{
+        display: none !important;
+      }
+      #collaps{
+        display: block !important;
+      }
+    }
   </style>
 </head>
 
 <body>
   <!--  -->
-  <div class="container px-12 mx-auto mt-6 mb-16">
+  <div class="container relative px-24 lg:px-14 md:px-2 sm:px-1 mx-auto mt-6 mb-16">
     <!--  -->
-    <header class="flex
+    <header class="
+    flex
     justify-between
     content-center
     items-center
@@ -41,32 +89,61 @@
       content-center 
       items-center	
       ">
-        <!--  -->
-        <a href="#">
-          <h1 class="font-bold text-4xl">Sneaker</h1>
-        </a>
-        <ul class="flex gap-x-8">
-          <li><a href="">Men</a></li>
-          <li><a href="">Women</a></li>
-          <li><a href="">About</a></li>
-          <li><a href="">Contact</a></li>
+        <div class="flex gap-x-2">
+          <button id="collaps" class="hidden"  onclick="collapsMenu()">
+            <div class="flex flex-col gap-y-1">
+              <span class="h-1 w-6 bg-gray-500"></span>
+              <span class="h-1 w-6 bg-gray-500"></span>
+              <span class="h-1 w-6 bg-gray-500"></span>
+            </div>
+          </button>
+          <a href="#" class="flex-1">
+            <img src="./images/logo.svg" alt="">
+          </a>
+        </div>
+        <ul id="horizUl" class="flex gap-x-8">
+          <li><a class="hover:pb-7 hover:border-b-4 hover:border-orange-400 transition duration-200" href="">Men</a></li>
+          <li><a class="hover:pb-7 hover:border-b-4 hover:border-orange-400 transition duration-200" href="">Women</a></li>
+          <li><a class="hover:pb-7 hover:border-b-4 hover:border-orange-400 transition duration-200" href="">About</a></li>
+          <li><a class="hover:pb-7 hover:border-b-4 hover:border-orange-400 transition duration-200" href="">Contact</a></li>
         </ul>
-        <!--  -->
       </nav>
-      <!--  -->
       <div class="
+      relative
       flex
       justify-center	
       content-center 
       items-center 
       gap-x-6
       ">
-        <img src="./images/icon-cart.svg" alt="" class="w-8 h-8 cursor-pointer">
-        <img src="./images/image-avatar.png" alt="" class="w-12 h-12 cursor-pointer">
+        <div id="div-cart" class="">
+          <span id="count-cart-prodact" class="absolute top-0 left-0 text-xs text-white px-2 bg-orange-400 rounded-lg ml-2">0</span>
+          <img src="./images/icon-cart.svg" 
+          onclick="toggleModal()"
+          alt="" 
+          class="
+          w-8 
+          h-8 
+          cursor-pointer 
+          animate__animated
+          animate__jello
+          ">
+        </div>
+        <img 
+          src="./images/image-avatar.png" 
+          alt=""
+          class="
+          w-12
+          h-12 
+          cursor-pointer 
+          hover:ring 
+          hover:ring-orange-300 
+          rounded-full 
+          focus:ring 
+          focus:ring-orange-300"
+          >
       </div>
-      <!--  -->
     </header>
-    <!--  -->
     <hr>
     <!--  -->
     <main class="
@@ -79,25 +156,57 @@
       <!--  -->
       <div id="view-prodact" class="
       flex
+      flex-1
       flex-col
       items-center
       ">
-        <img src="./images/image-product-1.jpg" alt="" class="w-96 h-96 rounded-lg">
+        <div class="transition duration-200 hover:scale-110 ">
+          <img id="img-prodact" src="./images/image-product-1.jpg" alt="" onclick="checkout()" class="
+        w-96 
+        h-96 
+        rounded-lg 
+        transition
+        duration-200
+        cursor-pointer
+        hover:border-4
+        hover:border-orange-400
+        animate__animated
+        animate__jello
+        ">
+        </div>
+
+
+
         <!--  -->
         <ul id="nav-imgs" class="flex gap-x-6 pt-10">
-          <li><img src="./images/image-product-1-thumbnail.jpg" alt=""
-              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300"></li>
-          <li><img src="./images/image-product-2-thumbnail.jpg" alt=""
-              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300"></li>
-          <li><img src="./images/image-product-3-thumbnail.jpg" alt=""
-              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300"></li>
-          <li><img src="./images/image-product-4-thumbnail.jpg" alt=""
-              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300"></li>
+          <li><img src="./images/image-product-1-thumbnail.jpg" alt="" id="imgBtn"
+              data-src="./images/image-product-1.jpg"
+              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300 hideen active">
+          </li>
+          <li><img src="./images/image-product-2-thumbnail.jpg" alt="" id="imgBtn"
+              data-src="./images/image-product-2.jpg"
+              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300 hideen">
+          </li>
+          <li><img src="./images/image-product-3-thumbnail.jpg" alt="" id="imgBtn"
+              data-src="./images/image-product-3.jpg"
+              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300 hideen">
+          </li>
+          <li><img src="./images/image-product-4-thumbnail.jpg" alt="" id="imgBtn"
+              data-src="./images/image-product-4.jpg"
+              class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300 hideen">
+          </li>
         </ul>
         <!--  -->
       </div>
       <!--  -->
-      <div id="detailes-prodact" class="flex flex-col gap-y-10">
+      <div id="detailes-prodact" class="
+      flex 
+      flex-1
+      flex-col 
+      gap-y-10
+      animate__animated
+      animate__bounceInUp
+      ">
         <!--  -->
         <h3 class="
         font-bold 
@@ -107,20 +216,18 @@
         ">
           Sneaker Company
         </h3>
-        <h1 class="font-bold text-4xl">
-          Fall Limited Edition</br>
-          Sneakers
+        <h1 id="title-prodact" class="font-bold text-4xl whitespace-pre">
         </h1>
-        <p>These low-profile sneakers are your perfect casual wear</br>
-          companion. Featuring a durable rubber outer sole, they’ll</br>
-          withstand everything the weather can offer.
+        <p id="descrip-prodact">
         </p>
         <!--  -->
         <div id="details-Price">
           <!--  -->
           <div class="flex gap-x-2">
-            <span id="price" class="text-2xl">$125</span>
-            <div id="devtiion" class="
+            <span id="price-prodact" class="text-2xl">
+              $125
+            </span>
+            <div id="devtiion-descount" class="
             text-md 
             font-bold 
             text-orange-400 
@@ -131,8 +238,13 @@
               50%
             </div>
           </div>
-          <div id="descount" class="">
-            <p class="text-sm">$250.00</p>
+          <div class="">
+            <p id="old-price" class="
+            text-sm 
+            line-through
+            ">
+              $250.00
+            </p>
           </div>
           <!--  -->
           <div id="btns" class="
@@ -143,22 +255,59 @@
           ">
             <!--  -->
             <div class="counter mt-4">
-              <div class="bg-gray-100 rounded-xl flex justify-center items-center gap-x-0 mb-6">
-                <button onclick="decrement()" id="btnMinus"
-                  class="text-orange-400 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg">
-                  <p class="text-2xl font-bold text-orange-400">-</p>
+              <div class="
+              bg-gray-100 
+              rounded-xl 
+              flex 
+              justify-center 
+              items-center 
+              gap-x-0 
+              mb-6
+              ">
+                <button onclick="decrement()" id="btnMinus" class="
+                text-orange-400 
+                hover:bg-gray-200 
+                text-gray-800 
+                font-semibold 
+                py-2 
+                px-4 
+                rounded-lg
+                ">
+                  <p class="
+                  text-2xl 
+                  font-bold 
+                  text-orange-400
+                  ">
+                    -
+                  </p>
                 </button>
-                <p class="text-sm leading-5 font-medium text-gray-900">
+                <p class="
+                text-sm
+                leading-5
+                font-medium 
+                text-gray-900
+                ">
                   <span id="count" class="px-6">1</span>
                 </p>
-                <button onclick="addCount()" id="btnPlus"
-                  class="hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg">
-                  <p class="text-2xl text-orange-400">+</p>
+                <button onclick="addCount()" id="btnPlus" class="
+                  hover:bg-gray-200 
+                  text-gray-800 
+                  font-semibold 
+                  py-2 
+                  px-4 
+                  rounded-lg
+                  ">
+                  <p class="
+                  text-2xl 
+                  text-orange-400
+                  ">
+                    +
+                  </p>
                 </button>
               </div>
             </div>
             <!--  -->
-            <button id="add-to-cart" class="
+            <button onclick="addProdactToCart()" id="add-to-cart" class="
                 flex
                 items-center
                 gap-x-2
@@ -171,8 +320,11 @@
                 rounded-xl
                 shadow-lg
                 shadow-orange-200
+                transition
+                duration-200
+                hover:scale-105
                 ">
-              <img src="./images/icon-cart.svg" alt="" class="w-4 h-4">Add to cart
+              <img src="./images/icon-cart.svg" alt="" class="w-4 h-4 fill-white">Add to cart
             </button>
             <!--  -->
           </div>
@@ -183,13 +335,139 @@
       <!--  -->
     </main>
     <!--  -->
+
+
+
+
+
+    <div id="modal" class="hidden z-10">
+      <div id="content-modal"
+        class="bg-white flex flex-col gap-y-2 fixed z-10 top-20 right-12 border w-96 h-60 rounded-md shadow-2xl animate__animated animate__fadeIn">
+        <div id="header-cart" class="my-4 w-100">
+          <h1 class="text-xl font-bold ml-2">Cart</h1>
+          <hr>
+        </div>
+        <div id="cart-prodact" class="px-2 flex flex-col gap-y-4 overflow-scroll touch-pan-x">
+        </div>
+        <div class="flex gap-x-2 px-2">
+          <button class="font-bold bg-gray-200 py-2 px-2 rounded-md hover:bg-gray-300" onclick="cancel()">
+            Cancel</button>
+          <button class="text-white font-bold flex-2 flex-grow bg-orange-400 py-2 rounded-md hover:bg-green-500">
+            Checkout</button>
+        </div>
+      </div>
+    </div>
+
+    <div 
+    class=" hidden fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity flex flex-col justify-center
+            items-center" id="modal-checkout">
+            <button id="exitBtn" class="text-white font-bold justify-items-start ml-96 mb-4"
+              onclick="cancelCheckout()">X</button>
+
+            <div id="view-prodact-modal" class="flex flex-col gap-y-6">
+              <div class="
+                flex
+                flex-1
+                flex-col
+                items-center
+                ">
+
+                <img id="img-prodact-modal" src="./images/image-product-1.jpg" alt="" class="
+                  w-96 
+                  h-96 
+                  rounded-lg 
+                  transition
+                  duration-200
+                  hover:scale-105
+                  cursor-pointer
+                  animate__animated
+                  animate__jello
+                  ">
+
+                <!--  -->
+                <ul id="nav-imgs-modal" class="flex gap-x-6 pt-10">
+                  <li><img src="./images/image-product-1-thumbnail.jpg" alt="" id="imgBtnModal"
+                      data-src="./images/image-product-1.jpg"
+                      class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300 hideen active">
+                  </li>
+                  <li><img src="./images/image-product-2-thumbnail.jpg" alt="" id="imgBtnModal"
+                      data-src="./images/image-product-2.jpg"
+                      class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300 hideen">
+                  </li>
+                  <li><img src="./images/image-product-3-thumbnail.jpg" alt="" id="imgBtnModal"
+                      data-src="./images/image-product-3.jpg"
+                      class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300 hideen">
+                  </li>
+                  <li><img src="./images/image-product-4-thumbnail.jpg" alt="" id="imgBtnModal"
+                      data-src="./images/image-product-4.jpg"
+                      class="w-20 h-20 rounded-lg cursor-pointer hover:outline-none hover:ring hover:ring-orange-300 hideen">
+                  </li>
+                </ul>
+                <!--  -->
+              </div>
+              <div class="flex justify-center items-center">
+                <button class="bg-gray-400 text-white font-bold p-2 rounded hover:bg-red-700"
+                  onclick="cancelCheckout()">Cancel</button>
+              </div>
+            </div>
+
+        </div>
+
+
+<div 
+  id="modal-nav"
+  class=" 
+  hidden 
+  flex
+  fixed
+  inset-0 
+  bg-opacity-75 
+  transition-opacity 
+  flex 
+  flex-col
+  justify-center
+  items-center" 
+  id="modal-checkout"
+  >
+  <div 
+  onclick="cancelNav()"
+  class="
+  fixed
+  inset-0 
+  bg-gray-800 
+  bg-opacity-75 
+  transition-opacity 
+  flex 
+  flex-col
+  justify-center
+  items-center"
+  >
   </div>
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-    Coded by <a href="#">Mahmoud Al-Moukhtar</a>.
+    <div id="content-modal-Collaps"
+      class="bg-white flex flex-col gap-y-4 fixed z-10 top-0 left-0 border w-60 min-h-full rounded-md shadow-2xl animate__animated animate__fadeInLeft">
+      <div id="header-cart" class="my-2 w-100">
+        <button onclick="cancelNav()" class="font-bold ml-4">X</button>
+      </br>
+      </div>
+      <ul class="flex flex-col gap-y-14 ml-4">
+        <li><a class="hover:pb-1 hover:border-b-4 hover:border-orange-400 transition duration-200 font-bold" href="">Men</a></li>
+        <li><a class="hover:pb-1 hover:border-b-4 hover:border-orange-400 transition duration-200 font-bold" href="">Women</a></li>
+        <li><a class="hover:pb-1 hover:border-b-4 hover:border-orange-400 transition duration-200 font-bold" href="">About</a></li>
+        <li><a class="hover:pb-1 hover:border-b-4 hover:border-orange-400 transition duration-200 font-bold" href="">Contact</a></li>
+      </ul>
+    </div>
   </div>
+
+
+
+      </div>
+      <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+        Coded by <a href="#">Mahmoud Al-Moukhtar</a>.
+      </div>
 </body>
 <!--  -->
+
 <script src="./prodacts.js"></script>
 <script src="./main.js"></script>
 <!--  -->
